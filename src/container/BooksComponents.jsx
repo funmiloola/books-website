@@ -12,17 +12,14 @@ export default function BookComponent() {
         <Link to={`/books/${isbn13}`}>
           <div className="flex flex-col items-center">
             <img src={image} alt="" className="w-35 h-35 md:w-45 md:h-45 object-contain " />
-            <h2 className="text-sm md:text-base font-bold text-blue-600">
-              Title:<span className="text-xs md:text-sm font-semibold ">{title}</span>
+            <h2 className="text-xs md:text-sm font-semibold text-blue-600">
+            {title}
             </h2>
-            <p className="md:text-base text-sm  font-bold text-blue-600">
-              Subtitle:
-              <span className="md:text-sm text-xs font-semibold ">
+            <p className="md:text-sm text-xs  font-semibold text-blue-600">
                 {subtitle ? subtitle : "No Subtitle"}
-              </span>
             </p>
-            <p className="text-sm  md:text-base font-bold text-blue-600">
-              Price:<span className="md:text-sm text-xs font-semibold ">{price}</span>
+            <p className="text-sm  md:text-base font-semibold text-blue-600">
+              Price: <span className="md:text-sm text-xs font-semibold ">{price}</span>
             </p>
           </div>
         </Link>
