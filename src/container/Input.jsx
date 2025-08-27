@@ -43,8 +43,8 @@ export default function Input() {
     return (
         <>
         <div className="flex gap-2 items-center justify-center pt-8 pb-12">
-            <input ref={Input} type="text" className=" outline-none border border-gray-400 w-1/3 rounded-lg text-gray-400" />
-            <button onClick={handleSubmit} className="border border-blue-400 bg-blue-400 rounded-lg px-6 py-1 text-white ">Search</button>
+            <input ref={Input} type="text" className=" outline-none border border-gray-400 w-1/3 rounded-lg text-gray-400" placeholder=" Search For Available Books" />
+            <button onClick={handleSubmit} className="border border-blue-400 bg-blue-400 rounded-lg px-6 py-0.5 text-white ">Search</button>
         </div>
         <div className="pb-4 pt-[-4px]">
                 {loading && <p className="text-blue-600 font-semibold text-base md:text-lg">Searching...</p>}
