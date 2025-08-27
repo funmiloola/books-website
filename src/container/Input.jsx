@@ -1,12 +1,14 @@
 import {useEffect, useRef,useState} from "react"
 import axios from "axios"
-import { useDispatch} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { searchBooks } from "./redux/actions/bookActions"
 export default function Input() {
-    const Input = useRef()
+    const Input = useRef();
     const [error, setError] = useState()
-    const [loading,setIsLoading] = useState(false)
+    const [loading, setIsLoading] = useState(false)
     const dispatch = useDispatch();
+    const navigate = useNavigate()
   const handleSubmit = async () => {
    if (!Input.current.value) return; 
   setIsLoading(true);
@@ -14,34 +16,26 @@ export default function Input() {
 
   try {
     const response = await axios.get(
-      `https://api.itbook.store/1.0/search/${Input.current.value}`
+      `https://api.itbook.store/1.0/search/${Input.current.value.replaceAll(' ','-')}`
     );
    if (response.data.total === "0") {
       setError("Book is not available");
             setTimeout(() => {
            setError(null)
        },2000)
-      } else {
-       const exactBook = response.data.books.find(
-           (book) =>  book.title.toLowerCase() === Input.current.value.toLowerCase() 
-       ) 
-       if (exactBook) {
-          dispatch(searchBooks([exactBook]));
       } 
-      else {
-           setError("Book is not available");
-            
+   else {
+       dispatch(searchBooks(response.data.books))
+        navigate("/results");
       }
-      }
-      
     } catch (err) {
       setError(err.message || "Something went wrong");
       
     } 
     finally {
-    setIsLoading(false);
+      setIsLoading(false);
   }
-
+      Input.current.value = '';
     }
     useEffect(() => {
     handleSubmit()
@@ -56,6 +50,7 @@ export default function Input() {
                 {loading && <p className="text-blue-600 font-semibold text-base md:text-lg">Searching...</p>}
             {error && <p className="text-blue-600 text-base font-semibold md:text-lg">{error}</p>}
             </div>
-            </>
+        </>
+        
     )
 }

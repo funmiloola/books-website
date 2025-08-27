@@ -7,11 +7,11 @@ export default function BookComponent() {
     return (
       <div
         key={isbn13}
-        className="books min-h-[400px] sm:min-h-[450px] md:min-h-[400px] flex flex-col items-center justify-center text-center p-4 border border-gray-300 rounded-lg shadow-md"
+        className="h-[450px] md:h-[470px] px-8 w-full flex flex-col items-center justify-center text-center border border-gray-300 rounded-lg shadow-md"
       >
         <Link to={`/books/${isbn13}`}>
-          <div className="flex flex-col items-center">
-            <img src={image} alt="" className="w-35 h-35 md:w-45 md:h-45 object-contain " />
+          <div className="flex flex-col items-center w-full">
+            <img src={image} alt="" className="w-full h-45 object-contain" />
             <h2 className="text-xs md:text-sm font-semibold text-blue-600">
             {title}
             </h2>
@@ -27,7 +27,7 @@ export default function BookComponent() {
     );
   });
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12 justify-items-center place-items-center px-6 pb-12 ">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8 justify-items-center place-items-center px-6 pb-8 ">
       {renderList}
     </div>
   );

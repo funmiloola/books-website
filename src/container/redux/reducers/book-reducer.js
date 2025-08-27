@@ -1,6 +1,7 @@
 import { ActionTypes } from "../constants/actionTypes";
 const initialState = {
-    books: []
+    books: [],
+    searchBook:[]
 }
 
 export const booksReducer = (state = initialState, { type, payload }) => {
@@ -19,8 +20,8 @@ export const booksDetailsReducer = (state={ }, { type, payload }) => {
     return state;
 }
 export const booksSearchReducer = (state = initialState, { type, payload }) => {
-     if (type === ActionTypes.SET_BOOKS) {
-        return {...state, books:payload};
+     if (type === ActionTypes.SEARCH_BOOKS) {
+        return {...state, searchBook:payload};
     }
     return state;
 }
